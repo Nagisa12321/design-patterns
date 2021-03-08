@@ -1,0 +1,59 @@
+{
+  "data": {
+    "yesterday": {
+      "date": "7日星期日",
+      "high": "高温 15℃",
+      "fx": "东北风",
+      "low": "低温 9℃",
+      "fl": "<![CDATA[2级]]>",
+      "type": "小雨"
+    },
+    "city": "成都",
+    "forecast": [
+      {
+        "date": "8日星期一",
+        "high": "高温 15℃",
+        "fengli": "<![CDATA[1级]]>",
+        "low": "低温 9℃",
+        "fengxiang": "东风",
+        "type": "小雨"
+      },
+      {
+        "date": "9日星期二",
+        "high": "高温 14℃",
+        "fengli": "<![CDATA[1级]]>",
+        "low": "低温 10℃",
+        "fengxiang": "北风",
+        "type": "阴"
+      },
+      {
+        "date": "10日星期三",
+        "high": "高温 15℃",
+        "fengli": "<![CDATA[1级]]>",
+        "low": "低温 10℃",
+        "fengxiang": "东北风",
+        "type": "小雨"
+      },
+      {
+        "date": "11日星期四",
+        "high": "高温 15℃",
+        "fengli": "<![CDATA[1级]]>",
+        "low": "低温 11℃",
+        "fengxiang": "东风",
+        "type": "阴"
+      },
+      {
+        "date": "12日星期五",
+        "high": "高温 18℃",
+        "fengli": "<![CDATA[1级]]>",
+        "low": "低温 13℃",
+        "fengxiang": "东南风",
+        "type": "小雨"
+      }
+    ],
+    "ganmao": "感冒低发期，天气舒适，请注意多吃蔬菜水果，多喝水哦。",
+    "wendu": "13"
+  },
+  "status": 1000,
+  "desc": "OK"
+}
