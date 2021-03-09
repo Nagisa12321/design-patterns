@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/observer/weather/app/WeatherStation.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/observer/weather/impl/disaplay/ChineseDisplay.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/observer/weather/utils/WeatherGetter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/observer/weatherobservable/app/WeatherStation.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/observer/weatherobservable/impl/WeatherData.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/observer/weatherobservable/impl/disaplay/ChineseDisplay.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/strategy/game/impl/behaviors/AxeBehavior.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/strategy/game/impl/behaviors/BowAndArrowBehavior.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/strategy/game/impl/behaviors/KnifeBehavior.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/jtchen/strategy/game/impl/behaviors/SwordBehavior.java" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
   </component>
 </project>
