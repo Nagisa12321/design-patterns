@@ -1,4 +1,4 @@
-package com.jtchen.observer.weatherobservable.beans;
+package com.jtchen.observer.weatherObservable.beans;
 
 /**
  * @author jtchen

@@ -1,10 +1,10 @@
-package com.jtchen.observer.weatherobservable.app;
+package com.jtchen.observer.weatherObservable.app;
 
-import com.jtchen.observer.weatherobservable.beans.State;
-import com.jtchen.observer.weatherobservable.impl.WeatherData;
-import com.jtchen.observer.weatherobservable.impl.disaplay.ChineseDisplay;
-import com.jtchen.observer.weatherobservable.impl.disaplay.CurrentConditionsDisplay;
-import com.jtchen.observer.weatherobservable.utils.WeatherGetter;
+import com.jtchen.observer.weatherObservable.beans.State;
+import com.jtchen.observer.weatherObservable.impl.WeatherData;
+import com.jtchen.observer.weatherObservable.impl.disaplay.ChineseDisplay;
+import com.jtchen.observer.weatherObservable.impl.disaplay.CurrentConditionsDisplay;
+import com.jtchen.observer.weatherObservable.utils.WeatherGetter;
 
 /**
  * @author jtchen

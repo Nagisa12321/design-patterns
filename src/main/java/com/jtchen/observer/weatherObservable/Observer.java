@@ -1,6 +1,6 @@
-package com.jtchen.observer.weatherobservable;
+package com.jtchen.observer.weatherObservable;
 
-import com.jtchen.observer.weatherobservable.beans.State;
+import com.jtchen.observer.weatherObservable.beans.State;
 
 /**
  * @author jtchen

@@ -1,6 +1,6 @@
-package com.jtchen.observer.weatherobservable.impl;
+package com.jtchen.observer.weatherObservable.impl;
 
-import com.jtchen.observer.weatherobservable.beans.State;
+import com.jtchen.observer.weatherObservable.beans.State;
 
 import java.util.Observable;
 

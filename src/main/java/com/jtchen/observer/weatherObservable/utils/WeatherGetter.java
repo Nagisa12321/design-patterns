@@ -1,6 +1,6 @@
-package com.jtchen.observer.weatherobservable.utils;
+package com.jtchen.observer.weatherObservable.utils;
 
-import com.jtchen.observer.weatherobservable.beans.State;
+import com.jtchen.observer.weatherObservable.beans.State;
 
 /**
  * 获取成都天气
