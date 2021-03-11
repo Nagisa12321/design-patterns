@@ -69,7 +69,7 @@ ___
 
 - 主题: `button`, 观察者: 两个`Listener`对象, 通过add...Listener来注册
 
-# 3. 装饰者模式([decorator](src/main/java/com/jtchen/decorator))
+## 3. 装饰者模式([decorator](src/main/java/com/jtchen/decorator))
 
 - 装饰者模式动态的将责任附加到对象上, 若要扩展功能, 装饰者提供了比继承更有弹性的替代方案
     - 装饰者和被装饰者有相同的超类型
@@ -184,15 +184,111 @@ Beverage beverage1 = new HouseBlend();
 
 - [实现自己的InputStream装饰器](src/main/java/com/jtchen/decorator/io/LowerCaseInputStream.java)
 
-### ⭐ 要点
+#### ⭐ 要点
 
 1. 继承属于扩展形式之一, 但不见得是达到弹性设计的最佳方法
+
 2. 在我们的实际中， 应该允许行为可以被扩展, 而无需修改现有的代码
+
 3. 组合和委托有利于运行时动态加上新的行为
+
 4. 除了继承, 装饰者模式也可以让我们扩展行为
+
 5. 装饰者模式意味着**一群装饰者类**, 这些类用来包装具体组件
+
 6. 装饰者类反映出被装饰的组件类型, **事实上它们具有相同的类型**, 都是经过接口或者继承实现
+
 7. 装饰者可以在被装饰着的前面或者后面加上自己的行为, 甚至可以将被装饰者的行为整个取代掉, 而达到特定的目的
+
 8. 你可以用**无数**个装饰者装饰特定的组件
+
 9. 装饰者一般对组件的客户是透明的, 除非客户依赖于组件的具体类型
+
 10. 装饰者会导致设计中出现很多小对象, 会让程序变得复杂
+
+## 4. 工厂模式([factory](src/main/java/com/jtchen/factory))
+
+#### ⭐ "new"有什么不对劲?
+
+- 技术上new没有错。但是会导致我们代码使用大量具体类, 就是自找麻烦, 因为一旦加入新的具体类的时候, 就必须改变代码。也就是说, 你的代码并非"对修改关闭".
+
+#### ⭐ 关于Pizza的初始方法设计:
+
+```
+Pizza orderPizza(String type) {
+	Pizza pizza;
+	if (type.eqauals("...")) {
+	
+	}
+	if (type.eqauals("...")) {
+	
+	}
+	if (type.eqauals("...")) {
+	
+	}
+	if (type.eqauals("...")) {
+	
+	}
+	
+	// .....
+}
+```
+
+- 明显的, 当你需要更新菜单(添加删除某个种类的pizza, 必须不断修改菜单), 如果实例化某些pizza类, 将使`orderPizza()`出现问题, 也无法让`orderPizza()`对修改关闭
+
+- 哪些是改变的, 哪些是不变的?   
+  明显pizza的种类是改变的, 但是要通过字符串实例化一个pizza对象这个动作是不变的
+
+#### ⭐ 建立一个简单的pizza工厂
+
+- 将创建对象移动到`orderPizza()`之外的另一个对象中, 这个新的对象只管如何创建pizza, 如果任何对象想要创建pizza, 找它就行了;
+
+- 我们称这个新的对象为"工厂"(factory). 那么`orderPizza()`就是该对象的客户
+
+- [SimplePizzaFactory.java](src/main/java/com/jtchen/factory/pizzas/SimplePizzaFactory.java)
+
+- 利用静态方法定义一个工厂, 这是很常见的技巧, 常常被称为静态工厂, 但是它也有缺点, 不能通过继承来改变创建方法的行为
+
+- 简单工厂不是一个设计模式, 是一种编程习惯
+
+#### ⭐ 加盟Pizza店
+
+- 需求: 加盟的pizza店不仅要有自己风格的pizza, 还要有自己独特的做菜方法
+
+```
+// 把工厂对象重新移动到这个方法中, 不过是抽象的
+// 加盟的pizza店应该继承PizzaStore类并且实现自己的create方法
+
+public abstract Pizza createPizza(String type);
+```
+
+- 允许子类做决定:
+
+1. 我们希望所有加盟店对于订单的处理能够一致: 因此在父类定义好`orderPizza()` 方法
+
+2. 我们希望每个加盟店做出不同风味的pizza, 因此在父类声明抽象`createPizza()`方法
+
+3. 我们希望pizza有自己独特的制作方法, 因此我们可以适当重写Pizza中的方法.
+
+- 子类如何做决定?
+
+    - `orderPizza()`是父类中定义的方法, 因此不知道哪个子类(Store)在制作pizza
+
+    - Pizza也是抽象的, `orderPizza()`并不知道在具体制作pizza的过程中哪些具体参数参与进来了
+
+- [pizza](src/main/java/com/jtchen/factory/pizzafm);
+
+- 工厂方法用来处理对象的创建, 并将这样的行为封装在子类之中, 这样, 客户程序中关于超类的代码就和子类对象创建代码解耦了
+
+```
+/*
+abstract      :   工厂方法是抽象的, 所以依赖子类处理对象的创建
+Product       :   工厂方法必须返回一个产品, 超类中定义的方法, 通常使用到工厂方法的返回值
+factoryMethod :   工厂方法将客户(也就是超类中的代码(orderPizza())和实际创建具体产品分割开来)
+String type   :   工厂方法可能需要参数也可能不需要, 来指定所需要的产品
+*/
+
+absert Product factoryMethod(String type) {
+    // ...
+}
+```
