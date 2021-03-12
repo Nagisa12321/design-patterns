@@ -208,6 +208,8 @@ Beverage beverage1 = new HouseBlend();
 
 ## 4. 工厂模式([factory](src/main/java/com/jtchen/factory))
 
+- **工厂方法模式**: 定义了一个创建对象的接口, 但由子类决定要实例化的类是哪一个, 工厂方法让类的实例化推迟到子类
+
 #### ⭐ "new"有什么不对劲?
 
 - 技术上new没有错。但是会导致我们代码使用大量具体类, 就是自找麻烦, 因为一旦加入新的具体类的时候, 就必须改变代码。也就是说, 你的代码并非"对修改关闭".
@@ -292,3 +294,45 @@ absert Product factoryMethod(String type) {
     // ...
 }
 ```
+
+- 如何产生你想要的pizza?
+    1. 创建一个PizzaStore的子类实例  
+       `PizzaStore store = new NYPizzaStore()`
+    2. 调用实例的orderPizza方法  
+       `store.orderPizza("cheese")`
+    3. orderPizza虽位于抽象类PizzaStore, 但是在运行时会调用具体类的`createPizza()`方法
+    4. 最后由父类对具体的pizza进行处理, 返回Pizza对象
+
+#### ⭐ 关于工厂方法模式
+
+1. 当只有一个具体实现的时候, 工厂方法模式有什么优点?
+
+    - 只有一个具体创建者, 工厂方法模式依然推荐, 因为它帮助我们"实现" 从'使用'中解耦。如果我们增加任何产品, Creator丝毫没有受到影响
+
+2. 工厂方法是否总是抽象的?
+
+    - 不一定, 这取决于产品是否有抽象类, 如果产品没有抽象类, 也就是说, 只有一种具体产品, 那我们就不需要抽象的创建者和抽象的工厂方法了
+
+3. 简单工厂和工厂方法模式的区别?
+
+    - 简单工厂把所有的事情都在一个地方处理完了. 工厂方法模式创建一个模式, 让子类决定要如何实现
+
+#### ⭐ 一个很依赖的PizzaStore
+
+- [DependentPizzaStore](src/main/java/headfirst/designpatterns/factory/pizzafm/DependentPizzaStore.java)
+
+- 当你实例化一个对象的时候, 它就是在依赖具体类
+
+- 我们已经创建了一个抽象Pizza类, 但在DependentPizzaStore代码中, 我们仍然创建了具体Pizza类
+
+- 依靠工厂方法, 我们把这些实例化代码独立出来, 变成只依赖Pizza类, 符合依赖抽象不依赖具体的原则.
+
+#### 🍺 设计原则1: 依赖倒置原则
+
+要依赖抽象, 不要依赖具体
+
+1. 变量不可以持有**具体类**的引用: 如果使用new, 就会持有具体类的引用, 你可以用工厂方法来避开这样的做法
+2. 不要让类派生具体类: 如果派生自具体类, 那么还是会依赖具体类, 请派生自一个抽象接口/类
+3. 不要覆盖基类中实现的方法: 如果覆盖已实现的方法, 那么你的基类就不是真正一个适合被继承的抽象，基类中实现的方法, 应该由所有子类共享
+
+- 自己设计的HttpRequest工厂: [RequestFactory](src/main/java/com/jtchen/factory/http/RequestFactory.java)(待测试)

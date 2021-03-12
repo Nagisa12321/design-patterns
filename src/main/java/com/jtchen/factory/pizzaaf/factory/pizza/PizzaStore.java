@@ -1,4 +1,6 @@
-package com.jtchen.factory.pizzafm;
+package com.jtchen.factory.pizzaaf.factory.pizza;
+
+import com.jtchen.factory.pizzaaf.pizza.Pizza;
 
 /**
  * @author jtchen
