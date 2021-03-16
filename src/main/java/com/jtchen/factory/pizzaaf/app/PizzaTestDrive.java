@@ -1,7 +1,6 @@
 package com.jtchen.factory.pizzaaf.app;
 
 import com.jtchen.factory.pizzaaf.factory.pizza.impl.ChicagoPizzaStore;
-import com.jtchen.factory.pizzaaf.factory.pizza.impl.NYPizzaStore;
 import com.jtchen.factory.pizzaaf.pizza.Pizza;
 
 /**

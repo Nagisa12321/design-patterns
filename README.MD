@@ -358,4 +358,39 @@ absert Product factoryMethod(String type) {
     4. 重写pizza类: 每个pizza都持有一组原料。将prepare设置为抽象方法。 让子类决定要去哪个工厂获取原料
     5. 重写pizza子类, 子类的构造函数中必须获得一个原料工厂, 实现prepare方法, 从具体工厂获得具体原料
     6. 重写PizzaStore子类, 在重写的create方法中将具体工厂赋给具体Pizza子类, 并且return出相应制造好的不同地区, 不同种类的pizza供父类实现加工。
-    
+
+## 5. 单件模式([Singleton](src/main/java/com/jtchen/singleton))
+
+- **单件模式**: 确保一个类只有一个实例, 并且提供一个全局访问点
+    - 把某个类设计自己管理的一个单独实例.
+    - 当你需要时, 向类查询, 它会返回单个实例
+
+#### ⭐ 全局变量的缺点?
+
+- 如果把对象赋值给一个全局变量, 那么你就必须在程序开始的时候就创建它, 如果不对它加以使用, 就会造成浪费
+
+#### ⭐ 剖析经典单例模式实现
+
+- [Singleton](src/main/java/com/jtchen/singleton/example/Singleton.java)
+
+#### ⭐ 单件模式的特点:
+
+1. 独一无二: 在任意时刻只有一个对象
+2. 独一无二的好处: 常常被用来管理资源, 如: 数据库连接池和线程池
+3. 没有公有构造器: 外人为了取得单例模式的实例, 必须请求得到一个实例, 而不是自行实例化得到一个实例。
+
+#### ⭐ 巧克力工厂
+
+- [ChocolateBoiler](src/main/java/com/jtchen/singleton/chocolate/ChocolateBoiler.java)
+  
+```
+public static synchronized ChocolateBoiler getInstance() {
+        if (chocolateBoiler == null)
+            chocolateBoiler = new ChocolateBoiler();
+        return chocolateBoiler;
+}
+```
+- 在多线程模式下, 居然会拿到两个不同的实例[ChocolateBoilerTest](src/test/java/com/jtchen/singleton/chocolate/ChocolateBoilerTest.java)
+  - 解决方法1: 使用synchronized关键字对`getInstance()`方法进行同步
+  - 解决方法2: 采用急切创建实例, 而不是延迟创建实例的方法: jvm在加在类的过程中也会直接加载实例出来
+  - 解决方法3: 采用"双重检查加锁", 首先检查实例是否创建了, 如果尚未创建, 才进行同步。

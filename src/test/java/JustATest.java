@@ -1,6 +1,9 @@
 import org.junit.Test;
 
 import java.sql.Connection;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author jtchen
@@ -10,6 +13,12 @@ import java.sql.Connection;
 public class JustATest {
 	@Test
 	public void test1() {
-		Connection conn =
+		Connection conn;
+	}
+
+	@Test
+	public void test2() {
+		// 单例模式的一种体现
+		ExecutorService executorService = Executors.newCachedThreadPool();
 	}
 }
