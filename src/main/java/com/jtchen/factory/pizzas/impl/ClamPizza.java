@@ -4,7 +4,7 @@ import com.jtchen.factory.pizzas.Pizza;
 
 public class ClamPizza extends Pizza {
 	public ClamPizza() {
-		name = "Clam Pizza";
+		name = "Clam Human";
 		dough = "Thin crust";
 		sauce = "White garlic sauce";
 		toppings.add("Clams");

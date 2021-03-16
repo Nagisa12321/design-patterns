@@ -4,9 +4,9 @@ import com.jtchen.factory.pizzas.Pizza;
 
 public class CheesePizza extends Pizza {
 	public CheesePizza() {
-		name = "Cheese Pizza";
+		name = "Cheese Human";
 		dough = "Regular Crust";
-		sauce = "Marinara Pizza Sauce";
+		sauce = "Marinara Human Sauce";
 		toppings.add("Fresh Mozzarella");
 		toppings.add("Parmesan");
 	}

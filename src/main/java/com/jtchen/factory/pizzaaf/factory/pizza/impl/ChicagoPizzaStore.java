@@ -1,11 +1,11 @@
 package com.jtchen.factory.pizzaaf.factory.pizza.impl;
 
+import com.jtchen.factory.pizzaaf.factory.metrial.PizzaIngredientFactory;
+import com.jtchen.factory.pizzaaf.factory.metrial.impl.ChicagoPizzaIngredientFactory;
 import com.jtchen.factory.pizzaaf.factory.pizza.PizzaStore;
 import com.jtchen.factory.pizzaaf.pizza.Pizza;
-import com.jtchen.factory.pizzaaf.pizza.impl.ChicagoStyleCheesePizza;
-import com.jtchen.factory.pizzaaf.pizza.impl.ChicagoStyleClamPizza;
-import com.jtchen.factory.pizzaaf.pizza.impl.ChicagoStylePepperoniPizza;
-import com.jtchen.factory.pizzaaf.pizza.impl.ChicagoStyleVeggiePizza;
+import com.jtchen.factory.pizzaaf.pizza.impl.CheesePizza;
+import com.jtchen.factory.pizzaaf.pizza.impl.ClamPizza;
 
 /**
  * @author jtchen
@@ -15,15 +15,16 @@ import com.jtchen.factory.pizzaaf.pizza.impl.ChicagoStyleVeggiePizza;
 public class ChicagoPizzaStore extends PizzaStore {
 	@Override
 	public Pizza createPizza(String type) {
+		PizzaIngredientFactory factory = new ChicagoPizzaIngredientFactory();
+
+
 		switch (type) {
 			case "cheese":
-				return new ChicagoStyleCheesePizza();
-			case "veggie":
-				return new ChicagoStyleVeggiePizza();
+				return new CheesePizza(factory);
+
 			case "clam":
-				return new ChicagoStyleClamPizza();
-			case "pepperoni":
-				return new ChicagoStylePepperoniPizza();
+				return new ClamPizza(factory);
+
 			default:
 				return null;
 		}

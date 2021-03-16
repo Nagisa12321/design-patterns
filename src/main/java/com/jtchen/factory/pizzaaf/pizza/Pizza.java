@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Pizza {
+	// 每个pizza都持有一组准备时会用到的材料
 	protected String name;
 	protected Dough dough;
 	protected Sauce sauce;
@@ -15,6 +16,8 @@ public abstract class Pizza {
 	protected Clams clams;
 
 
+	// 把prepare方法声明为抽象, 在这个方法我们需要收集所需的原料, 而这些原料来自原料工厂
+	// 只需让后续特定pizza类中引入特定工厂代劳即可
 	public abstract void prepare();
 
 	protected List<String> toppings = new ArrayList<>();

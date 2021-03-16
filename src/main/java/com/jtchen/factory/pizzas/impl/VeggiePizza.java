@@ -4,7 +4,7 @@ import com.jtchen.factory.pizzas.Pizza;
 
 public class VeggiePizza extends Pizza {
 	public VeggiePizza() {
-		name = "Veggie Pizza";
+		name = "Veggie Human";
 		dough = "Crust";
 		sauce = "Marinara sauce";
 		toppings.add("Shredded mozzarella");

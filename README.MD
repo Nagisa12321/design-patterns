@@ -210,6 +210,12 @@ Beverage beverage1 = new HouseBlend();
 
 - **工厂方法模式**: 定义了一个创建对象的接口, 但由子类决定要实例化的类是哪一个, 工厂方法让类的实例化推迟到子类
 
+- **抽象工厂模式**: 提供一个接口, 用于创建相关或依赖对象的家族, 而不需要明确指定具体类。
+
+- 区别：
+    - 抽象工厂使用的是对象: 模式用于对象中的多个实例创建, 工厂方法使用的是类: 用于不同种类对象的创建
+    - 方法工厂用继承的方法延迟对象的创建, 抽象工厂是通过各种对象的组合, 而且这个各种对象指的是被创建对象所包含的对象
+
 #### ⭐ "new"有什么不对劲?
 
 - 技术上new没有错。但是会导致我们代码使用大量具体类, 就是自找麻烦, 因为一旦加入新的具体类的时候, 就必须改变代码。也就是说, 你的代码并非"对修改关闭".
@@ -336,3 +342,20 @@ absert Product factoryMethod(String type) {
 3. 不要覆盖基类中实现的方法: 如果覆盖已实现的方法, 那么你的基类就不是真正一个适合被继承的抽象，基类中实现的方法, 应该由所有子类共享
 
 - 自己设计的HttpRequest工厂: [RequestFactory](src/main/java/com/jtchen/factory/http/RequestFactory.java)(待测试)
+
+#### ⭐ 依赖原料的pizza店
+
+- [pizzaf](src/main/java/com/jtchen/factory/pizzaaf)
+
+- 在这种设计之中我们把Pizza, material(原料), PizzaFactory, PizzaIngredientFactory(原料工厂) 分开。因此我们不需要为原料产地不同, 但所需原料种类相同,
+  而且制作方法相同的pizza分不同的类 。例如CheesPizza就是CheesPizza, 没有所谓NYCheesPizza和ChicagoPizza的区别。抽象类Pizza只关心如何处理Pizza,
+  Pizza子类关心从哪个工厂取真实原料进行处理。各种Store负责Pizza的生成加工, 并且初始化 Pizza子类的时候会通知其去哪个工厂取原料。
+
+- 顺序:
+    1. 为原料工厂创建一个接口, 这个接口负责处理所有原料.
+    2. 为每个区域创建具体工厂, 继承1. 所创建的工厂接口
+    3. 实现一组原料类提供使用
+    4. 重写pizza类: 每个pizza都持有一组原料。将prepare设置为抽象方法。 让子类决定要去哪个工厂获取原料
+    5. 重写pizza子类, 子类的构造函数中必须获得一个原料工厂, 实现prepare方法, 从具体工厂获得具体原料
+    6. 重写PizzaStore子类, 在重写的create方法中将具体工厂赋给具体Pizza子类, 并且return出相应制造好的不同地区, 不同种类的pizza供父类实现加工。
+    

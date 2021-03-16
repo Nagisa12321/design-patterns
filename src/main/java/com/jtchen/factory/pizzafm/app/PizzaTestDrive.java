@@ -11,14 +11,14 @@ import com.jtchen.factory.pizzafm.impl.store.NYPizzaStore;
  */
 public class PizzaTestDrive {
 	public static void main(String[] args) {
-		// NY Style Sauce and Cheese Pizza
+		// NY Style Sauce and Cheese Human
 		NYPizzaStore nyPizzaStore = new NYPizzaStore();
 		Pizza cheese = nyPizzaStore.orderPizza("cheese");
 		System.out.println(cheese);
 
 		System.out.println();
 
-		// Chicago Style Clam Pizza
+		// Chicago Style Clam Human
 		ChicagoPizzaStore chicagoPizzaStore = new ChicagoPizzaStore();
 		Pizza clam = chicagoPizzaStore.orderPizza("clam");
 		System.out.println(clam);

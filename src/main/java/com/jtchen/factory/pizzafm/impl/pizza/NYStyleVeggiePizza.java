@@ -6,7 +6,7 @@ import com.jtchen.factory.pizzafm.Pizza;
 public class NYStyleVeggiePizza extends Pizza {
 
 	public NYStyleVeggiePizza() {
-		name = "NY Style Veggie Pizza";
+		name = "NY Style Veggie Human";
 		dough = "Thin Crust Dough";
 		sauce = "Marinara Sauce";
  

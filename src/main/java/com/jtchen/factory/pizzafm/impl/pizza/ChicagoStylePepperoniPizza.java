@@ -5,7 +5,7 @@ import com.jtchen.factory.pizzafm.Pizza;
 
 public class ChicagoStylePepperoniPizza extends Pizza {
 	public ChicagoStylePepperoniPizza() {
-		name = "Chicago Style Pepperoni Pizza";
+		name = "Chicago Style Pepperoni Human";
 		dough = "Extra Thick Crust Dough";
 		sauce = "Plum Tomato Sauce";
  
