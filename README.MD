@@ -394,3 +394,73 @@ public static synchronized ChocolateBoiler getInstance() {
   - 解决方法1: 使用synchronized关键字对`getInstance()`方法进行同步
   - 解决方法2: 采用急切创建实例, 而不是延迟创建实例的方法: jvm在加在类的过程中也会直接加载实例出来
   - 解决方法3: 采用"双重检查加锁", 首先检查实例是否创建了, 如果尚未创建, 才进行同步。
+  
+
+## 6. 命令模式([Command](src/main/java/com/jtchen/command))
+
+- **命令模式**: 将"请求"封装成对象, 以便使用不同的请求, 队列或者日志来参数化其他对象, 命令模式也支持可撤销操作
+  - 我们知道一个命令对象通过在特定的接收者上绑定一组动作来封装一个请求。要达到这一点, 命令对象将动作和接收者包进对象之中, 
+    这个对象只暴露出一个`execute()`方法, 从外面来看, 其他对象不知道究竟哪个接收者进行了哪些动作 , 只知道如果调用execute()
+    方法, 请求目的就能达到
+
+#### ⭐ 神奇遥控器
+
+- [Control](src/main/java/com/jtchen/command/control/app)
+
+- 在本章我们将把封装调用推到另一个新的境界: 对函数进行封装
+
+- 如何设计遥控器api? 
+  
+  - 遥控器应该知道如何解读按钮被按下的动作, 然后发出正确的请求, 但遥控器不需知道这些家电的自动化细节
+  
+  - 采用命令模式 : 可以把动作的请求者从动作的执行者中解耦, 采用"命令对象" 就可以办得到。如果每个按钮都存储一个命令对象, 
+    当按钮被按下的时候, 就可以请命令对象做相关的工作
+    
+  - 使用这个模式, 我们能创建一个API, 将这些命令对象加载到按钮的插槽, 让遥控器的代码尽量保持简单, 而把家电自动化的工作和进行该工作的对象一起封装在命令对象之中
+  
+  - 这种模式/模型允许将"发出请求的对象"和"接收和执行这些请求的对象"分割开来
+  
+- [关于NoCommand](src/main/java/com/jtchen/command/control/command/impl/NoCommand.java)
+  - 是一个空对象的例子, 当你不想返回一个有意义的对象的时候, 客户也可以将处理null的责任交给空对象
+  
+- **添加撤销操作**:
+  - 用栈来保存执行过的指令
+```
+    private final Stack<Command> stack;
+
+    ....
+
+    public void onCommandWasPushed(int slot) {
+	    onCommands[slot].execute();
+	    stack.push(onCommands[slot]);
+    }
+
+	public void offCommandWasPushed(int slot) {
+	    offCommands[slot].execute();    
+	    stack.push(offCommands[slot]);
+    }
+    ....
+```
+  - 每次执行指令都存入栈中, 等到要撤销时, 如果栈不空, 从栈顶弹出一个指令, 并且执行其`undo()`方法
+
+- [**宏命令**](src/main/java/com/jtchen/command/control/command/impl/MacroCommand.java);
+
+
+#### ⭐ 命令模式的更多用途: 队列请求
+
+- [workingqueue](src/main/java/com/jtchen/command/workingqueue)
+
+- 在队列中装入多个TwoSumCommand, ThreeSumCommand, 让各个线程去执行
+
+- 工作队列类和进行计算的对象时完全解耦的, 工作队列对象不在乎到底在做些什么, 它们只知道从BQ中取出命令对象, 并且调用其execute方法
+
+## 7. 适配器模式([Adapter](src/main/java/com/jtchen/adapter))
+
+#### ⭐ 从插头开始: 
+
+- 插座适配器的作用: 它位于美式插头和欧式插座之间, 它的工作时将欧式插座转换成美式插座, 好让美式插头可以插进这个插座获得电力
+
+- java适配器和真实世界的适配器没什么区别, 将一个接口转化成另一个接口, 以符合客户的期望.
+
+- 适配器就像一个中间人, 将客户发出
+

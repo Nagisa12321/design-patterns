@@ -1,4 +1,5 @@
 import org.junit.Test;
+import sun.util.locale.provider.HostLocaleProviderAdapter;
 
 import java.sql.Connection;
 import java.util.concurrent.ExecutorService;
@@ -20,5 +21,10 @@ public class JustATest {
 	public void test2() {
 		// 单例模式的一种体现
 		ExecutorService executorService = Executors.newCachedThreadPool();
+	}
+
+	@Test
+	public void test3() {
+
 	}
 }
