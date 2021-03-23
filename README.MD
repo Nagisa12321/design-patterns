@@ -569,6 +569,14 @@ public static synchronized ChocolateBoiler getInstance() {
 
 ## 9. 迭代器与组合模式([Iterator](src/main/java/com/jtchen/iterator))
 
+- **迭代器模式**: 提供一种方法顺序访问一个聚合对象中的各个元素, 而又不暴露其内部的表示
+    - 迭代器模式让我们能游走于聚合内的每一个元素而又不暴露其内部的表示
+    - 把游走的任务放在迭代器上而又不放在聚合上, 这样简化了聚合的接口和实现, 也让责任各得其所
+
 #### ⭐ 从餐厅和煎饼屋开始说迭代器模式
 
 - 各个餐厅的不同实现方式会让问题变得复杂化。当我们书写这两个餐厅的客户代码时, 不得不考虑两个餐厅的存储底层结构 才能处理菜单遍历问题, 还有其他一些问题
+
+- 可以封装遍历吗?
+
+- 使用迭代器封装遍历: [restaurant](src/main/java/com/jtchen/iterator/restaurant)
